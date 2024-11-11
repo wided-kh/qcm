@@ -1,0 +1,77 @@
+{% extends 'teacher/teacherbase.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            background-color: #f3f4f6;
+            color: #333;
+        }
+        
+        h2 {
+            color: #24031e;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        form {
+            margin: 50px auto;
+            max-width: 500px;
+            padding: 20px;
+            background: #d1bcc1;
+            border-radius: 8px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group label {
+            font-weight: bold;
+            color: #570436;
+            margin-top: 10px;
+        }
+
+        .form-control {
+            border-radius: 6px;
+            border: 1px solid #55194b;
+        }
+
+        .btn-success {
+            background-color: #30042a;
+            border: none;
+            border-radius: 6px;
+            width: 100%;
+            font-weight: bold;
+            font-size: 16px;
+            padding: 10px;
+        }
+
+        .btn-success:hover {
+            background-color: #8d0952;
+        }
+    </style>
+</head>
+
+<h2 style="text-align:center;">Add Course Information</h2>
+
+<form method="POST" autocomplete="off">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="course_name">Course Name</label>
+        {% render_field courseForm.course_name class="form-control" placeholder="Example: Databases" %}
+
+        <label for="question_number">Total Questions</label>
+        {% render_field courseForm.question_number class="form-control" placeholder="Example: 10" %}
+
+        <label for="total_marks">Total Marks</label>
+        {% render_field courseForm.total_marks class="form-control" placeholder="Example: 100" %}
+    </div>
+
+    <button type="submit" class="btn btn-success">Submit Information</button>
+</form>
+
+<br><br><br>
+{% endblock content %}

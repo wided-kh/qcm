@@ -1,0 +1,114 @@
+{% extends 'teacher/teacherbase.html' %}
+{% block content %}
+{% load static %}
+
+<head>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+
+    .panel-heading h6 {
+      font-size: 24px;
+      font-weight: bold;
+      color: #fff;
+      margin: 0;
+    }
+
+    .panel-primary {
+      border-color: #580830;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      border-radius: 8px;
+    }
+
+    .panel-heading {
+      background-color: #310866;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+      padding: 15px;
+      text-align: center;
+    }
+
+    table {
+      width: 100%;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    #dev-table thead th {
+      background-color: #440932;
+      color: #fff;
+      text-align: center;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    #dev-table tbody tr:hover {
+      background-color: #e6e6ff;
+    }
+
+    #dev-table td, #dev-table th {
+      padding: 15px;
+      text-align: center;
+      border-color: #ddd;
+      font-size: 16px;
+    }
+
+    .btn-primary {
+      background-color: #05072e;
+      border-color: #4C51BF;
+      color: #fff;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: #530f39;
+      border-color: #3b3eaa;
+    }
+
+    .glyphicon-eye-open {
+      margin-right: 5px;
+    }
+  </style>
+</head>
+
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h6 class="panel-title">Available Questions</h6>
+    </div>
+    <table class="table table-hover table-bordered" id="dev-table">
+      <thead>
+        <tr>
+          <th>Course</th>
+          <th>Total Questions</th>
+          <th>Total Marks</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for c in courses %}
+        <tr>
+          <td>{{ c.course_name }}</td>
+          <td>{{ c.question_number }}</td>
+          <td>{{ c.total_marks }}</td>
+          <td>
+            <a class="btn btn-primary btn-sm" href="{% url 'see-question' c.id %}">
+              <span class="glyphicon glyphicon-eye-open"></span> View Question
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<br><br><br><br><br><br>
+{% endblock content %}
+

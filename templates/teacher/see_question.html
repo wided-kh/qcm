@@ -1,0 +1,109 @@
+{% extends 'teacher/teacherbase.html' %}
+{% block content %}
+{% load static %}
+
+<head>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+
+    .panel-primary {
+      border-color: #20011c;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      border-radius: 8px;
+    }
+
+    .panel-heading {
+      background-color: #15043b;
+      color: #fff;
+      padding: 15px;
+      text-align: center;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    table {
+      width: 100%;
+      background-color: #f7f7f7;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    #dev-table thead th {
+      background-color: #15043b;
+      color: #fff;
+      text-align: center;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    #dev-table tbody tr:hover {
+      background-color: #f1e6e5;
+    }
+
+    #dev-table td, #dev-table th {
+      padding: 12px;
+      text-align: center;
+      border-color: #ddd;
+      font-size: 16px;
+    }
+
+    .btn-danger {
+      background-color: #f56565;
+      border-color: #f56565;
+      color: #fff;
+      font-size: 14px;
+      padding: 5px 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-danger:hover {
+      background-color: #d9534f;
+      border-color: #d9534f;
+    }
+
+    .glyphicon-trash {
+      margin-right: 3px;
+    }
+  </style>
+</head>
+
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h6 class="panel-title">Available Questions</h6>
+    </div>
+    <table class="table table-hover table-bordered" id="dev-table">
+      <thead>
+        <tr>
+          <th>Question</th>
+          <th>Marks</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for c in questions %}
+        <tr>
+          <td>{{ c.question }}</td>
+          <td>{{ c.marks }}</td>
+          <td>
+            <a class="btn btn-danger btn-xs" href="{% url 'remove-question' c.id %}">
+              <span class="glyphicon glyphicon-trash"></span> Remove
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<br><br><br><br><br><br>
+{% endblock content %}
